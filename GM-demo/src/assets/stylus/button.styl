@@ -1,0 +1,222 @@
+@import './mixin'
+/**
+ * Buttons
+ * --------------------------------------------------
+ */
+.button {
+  // set the color defaults
+  button-style($button-default-bg, $button-default-border, $button-default-active-bg, $button-default-active-border, $button-default-text)
+
+  position: relative
+  display: inline-block
+  margin: 0
+  padding: 5px $button-padding
+
+  border-width: $button-border-width
+  border-style: solid
+
+  border: transparent solid $button-border-width
+
+  vertical-align: top
+  text-align: center
+
+  text-overflow: ellipsis
+  font-size: $button-font-size
+  line-height: $button-height - $button-border-width + 1px
+
+  cursor: pointer
+
+  min-width: ($button-padding * 3) + $button-font-size
+  min-height: $button-height + 3px
+
+  &:after {
+    // used to create a larger button "hit" area
+    position: absolute
+    top: -6px
+    right: -6px
+    bottom: -6px
+    left: -6px
+    content: ' '
+  }
+
+
+  &.button-block, &.button-full {
+    //margin-top: $button-block-margin
+    //margin-bottom: $button-block-margin
+  }
+
+  &.button-radius {
+    border-radius: 25px
+  }
+
+  &.button-primary {
+    button-style($button-primary-bg, $button-primary-border, $button-primary-active-bg, $button-primary-active-border, $button-primary-text)
+    button-clear($button-primary-border)
+    button-outline($button-primary-border)
+  }
+
+  &.button-primary-gradient {
+      button-style($button-primary-bg, $button-primary-border, $button-primary-active-bg, $button-primary-active-border, $button-primary-text)
+      button-clear($button-primary-border)
+      button-outline($button-primary-border)
+      border lighten($button-primary-bg, 12.5%)
+      background -webkit-linear-gradient(left, $button-primary-bg, lighten($button-primary-bg, 25%)) /* Safari 5.1 - 6.0 */
+      background -o-linear-gradient(right, $button-primary-bg, lighten($button-primary-bg, 25%)) /* Opera 11.1 - 12.0 */
+      background -moz-linear-gradient(right, $button-primary-bg, lighten($button-primary-bg, 25%)) /* Firefox 3.6 - 15 */
+      background linear-gradient(to right, $button-primary-bg , lighten($button-primary-bg, 25%)) /* 标准的语法 */
+    }
+
+  &.button-secondary {
+    button-style($button-secondary-bg, $button-secondary-border, $button-secondary-active-bg, $button-secondary-active-border, $button-secondary-text)
+    button-clear($button-secondary-border)
+    button-outline($button-secondary-border)
+  }
+
+  &.button-third {
+    button-style($button-third-bg, $button-third-border, $button-third-active-bg, $button-third-active-border, $button-third-text)
+    button-clear($button-third-border)
+    button-outline($button-third-border)
+  }
+
+  &.button-disable {
+    button-style($button-disable-bg, $button-disable-border, $button-disable-active-bg, $button-disable-active-border, $button-disable-text)
+    button-clear($button-disable-border)
+    button-outline($gray-light)
+  }
+
+  &.button-white {
+    button-style($button-white-bg, $button-white-border, $button-white-active-bg, $button-white-active-border, $button-white-text)
+    button-clear($button-white-border)
+    button-outline($button-white-border)
+    &.button-outline{
+      background-color:transparent
+      box-shadow: none
+    }
+    
+  }
+
+  &.button-light {
+    button-style($button-light-bg, $button-light-border, $button-light-active-bg, $button-light-active-border, $button-light-text)
+    button-clear($button-light-border)
+    button-outline($button-light-border)
+  }
+
+  &.button-stable {
+    button-style($button-stable-bg, $button-stable-border, $button-stable-active-bg, $button-stable-active-border, $button-stable-text)
+    button-clear($button-stable-border)
+    button-outline($button-stable-border)
+  }
+
+  &.button-dark {
+    button-style($button-dark-bg, $button-dark-border, $button-dark-active-bg, $button-dark-active-border, $button-dark-text)
+    button-clear($button-dark-border)
+    button-outline($button-dark-border)
+  }
+
+}
+
+.button-small {
+  padding: 1px $button-small-padding 0px
+  min-width: $button-small-height
+  min-height: $button-small-height
+  font-size: $button-small-font-size
+  line-height: $button-small-height - $button-border-width*2 - 2
+
+  .icon:before,
+  &.icon:before,
+  &.icon-left:before,
+  &.icon-right:before {
+    font-size: $button-small-icon-size
+    line-height: $button-small-icon-size + 3
+    margin-top: 3px
+  }
+}
+
+.button-large {
+  padding: 0 $button-large-padding
+  min-width: ($button-large-padding * 3) + $button-large-font-size
+  min-height: $button-large-height
+  font-size: $button-large-font-size
+  line-height: $button-large-height - $button-border-width*2
+
+  .icon:before,
+  &.icon:before,
+  &.icon-left:before,
+  &.icon-right:before {
+    padding-bottom: ($button-border-width * 2)
+    font-size: $button-large-icon-size
+    line-height: $button-large-height - ($button-border-width * 2) - 1
+  }
+}
+
+.button-clear {
+  button-clear($button-default-border)
+  transition(opacity .1s)
+  padding: 0 $button-clear-padding
+  max-height: $button-height
+  border-color: transparent
+  background: none
+  box-shadow: none
+
+  &.active,
+  &.activated {
+    opacity: 0.3
+  }
+}
+
+.button-outline {
+  button-outline($gray-999)
+  transition(opacity .1s)
+  background: $white
+  box-shadow: none
+}
+
+.padding > .button.button-block:first-child {
+  margin-top: 0
+}
+
+.button-block {
+  display: block
+  clear: both
+
+  &:after {
+    clear: both
+  }
+}
+
+.button-full,
+.button-full > .button {
+  display: block
+  margin-right: 0
+  margin-left: 0
+  width: 100%
+  //border-right-width: 0
+  //border-left-width: 0
+}
+
+button.button-block,
+button.button-full,
+.button-full > button.button,
+input.button.button-block  {
+  width: 100%
+}
+
+a.button {
+  text-decoration: none
+
+  .icon:before,
+  &.icon:before,
+  &.icon-left:before,
+  &.icon-right:before {
+    margin-top: 2px
+  }
+}
+
+.button.disabled,
+.button[disabled] {
+  border-color: $disable
+  background-color: $disable
+  opacity: .9
+  cursor: default !important
+  pointer-events: none
+}
